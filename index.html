@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0" />
+<title>无标题文档</title>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+	function show(json){
+		wx.config({
+			debug: true,
+			appId: 'wx7142132f17019133', // 必填，公众号的唯一标识
+			timestamp:json.time, // 必填，生成签名的时间戳
+			nonceStr: 'abc', // 必填，生成签名的随机串
+			signature:json.signature,// 必填，签名，见附录1
+			jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+		});	
+		
+		wx.ready(function(){
+			
+			var oBtn=document.querySelector('#oBtn');
+			
+			oBtn.onclick=function(){
+				wx.onMenuShareTimeline({
+					title: '哈哈哈', // 分享标题
+					link: 'www.zhinengshe.com', // 分享链接
+					imgUrl: '', // 分享图标
+					success: function () { 
+						// 用户确认分享后执行的回调函数
+						alert('成功了');
+					},
+					cancel: function () { 
+						confirm('确认取消吗?');
+					}
+				});	
+			}
+			
+		});
+	}
+
+	
+</script>
+<script src="http://www.itstrive.com/weixin/cc.php"></script>
+</head>
+
+<body>
+	<input id="oBtn" type="button" value="分享" />
+</body>
+</html>
